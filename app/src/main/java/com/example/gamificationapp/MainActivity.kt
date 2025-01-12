@@ -20,7 +20,7 @@ import com.example.gamificationapp.screens.student.PastActivityScreen
 import com.example.gamificationapp.screens.student.PastAssignmentScreen
 import com.example.gamificationapp.screens.student.PastQuizScreen
 import com.example.gamificationapp.screens.professor.ProfessorDashboardScreen
-import com.example.gamificationapp.screens.student.QuizScreen
+import com.example.gamificationapp.screens.student.FlashQuizScreen
 import com.example.gamificationapp.screens.student.RewardCatalogScreen
 import com.example.gamificationapp.screens.student.StudentDashboardScreen
 import com.example.gamificationapp.screens.student.TaskOverviewScreen
@@ -75,7 +75,7 @@ fun GamificationApp() {
             composable("past_activity") { PastActivityScreen(navController) }
 
             // Additional sub-navigation for tasks and past activities
-            composable("quiz_page") { QuizScreen() }
+            composable("flash_quiz_page") { FlashQuizScreen() }
             composable("assignment_page") { AssignmentScreen() }
             composable("past_quiz_page") { PastQuizScreen() }
             composable("past_assignment_page") { PastAssignmentScreen() }

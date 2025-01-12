@@ -1,4 +1,4 @@
-package com.example.gamificationapp.model
+package com.example.gamificationapp.models
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*

@@ -1,4 +1,4 @@
-package com.example.gamify.model
+package com.example.gamificationapp.models
 
 data class ActivityLog(
     val id: Int = 0,

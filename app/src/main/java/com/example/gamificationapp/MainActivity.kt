@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.gamificationapp.model.RewardViewModel
+import androidx.navigation.navArgument
+import com.example.gamificationapp.models.RewardViewModel
 import com.example.gamificationapp.screens.student.AssignmentScreen
 import com.example.gamificationapp.screens.student.CourseLeaderboardScreen
 import com.example.gamificationapp.screens.student.EarnedBadgesScreen
@@ -21,7 +23,7 @@ import com.example.gamificationapp.screens.student.PastActivityScreen
 import com.example.gamificationapp.screens.student.PastAssignmentScreen
 import com.example.gamificationapp.screens.student.PastQuizScreen
 import com.example.gamificationapp.screens.professor.ProfessorDashboardScreen
-import com.example.gamificationapp.screens.student.QuizScreen
+import com.example.gamificationapp.screens.student.FlashQuizScreen
 import com.example.gamificationapp.screens.student.RewardCatalogScreen
 import com.example.gamificationapp.screens.student.StudentDashboardScreen
 import com.example.gamificationapp.screens.student.TaskOverviewScreen
@@ -34,7 +36,9 @@ import com.example.gamificationapp.screens.professor.LowEngagementNotificationsS
 import com.example.gamificationapp.screens.professor.MilestoneConfigurationScreen
 import com.example.gamificationapp.screens.professor.TaskManagementScreen
 import com.example.gamificationapp.screens.professor.TeamChallengeManagementScreen
+import com.example.gamificationapp.screens.student.ChallengeDetailScreen
 import com.example.gamificationapp.ui.theme.GamificationAppTheme
+import com.example.gamificationapp.viewModel.FlashQuizViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,11 +78,22 @@ fun GamificationApp() {
             composable("earned_badges") { EarnedBadgesScreen(viewModel = rewardViewModel) }
             composable("reward_catalog") { RewardCatalogScreen(viewModel = rewardViewModel) }
             composable("milestones") { MilestonesScreen() }
-            composable("team_challenges") { TeamChallengesScreen() }
+            composable("team_challenges") { TeamChallengesScreen(navController) }
+            composable(
+                "challenge_detail/{challengeName}/{challengeDescription}",
+                arguments = listOf(
+                    navArgument("challengeName") { type = NavType.StringType },
+                    navArgument("challengeDescription") { type = NavType.StringType }
+                )
+            ) { backStackEntry ->
+                val challengeName = backStackEntry.arguments?.getString("challengeName") ?: ""
+                val challengeDescription = backStackEntry.arguments?.getString("challengeDescription") ?: ""
+                ChallengeDetailScreen(challengeName, challengeDescription, navController)
+            }
             composable("past_activity") { PastActivityScreen(navController) }
 
             // Additional sub-navigation for tasks and past activities
-            composable("quiz_page") { QuizScreen() }
+            composable("flash_quiz_page") { FlashQuizScreen(rewardViewModel = rewardViewModel) }
             composable("assignment_page") { AssignmentScreen() }
             composable("past_quiz_page") { PastQuizScreen() }
             composable("past_assignment_page") { PastAssignmentScreen() }
@@ -95,7 +110,6 @@ fun GamificationApp() {
         }
     }
 }
-
 
 
 

@@ -1,4 +1,4 @@
-package com.example.gamificationapp.model
+package com.example.gamificationapp.models
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
@@ -29,7 +29,6 @@ class RewardViewModel : ViewModel() {
             Reward(2, "Certificate", "Tangible", "Completion certificate", 500)
         )
 
-        // Initialize badges
         _allBadges.value = listOf(
             Badge(1, R.drawable.quizmaster, "Beginner", "Complete your first task"),
             Badge(2, R.drawable.quizmaster, "Achiever", "Complete 5 tasks"),
@@ -38,10 +37,9 @@ class RewardViewModel : ViewModel() {
         _earnedBadges.value = emptyList()
     }
 
-    // Add activity points and check for badge eligibility
     fun addActivityPoints(activity: String, points: Int) {
         _totalPoints.value = (_totalPoints.value ?: 0) + points
-        checkForBadges() // Check if new points unlock badges
+        checkForBadges()
     }
 
     // Check if any badges are earned

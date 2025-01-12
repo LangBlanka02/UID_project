@@ -1,4 +1,4 @@
-package com.example.gamificationapp.model
+package com.example.gamificationapp.models
 
 data class Reward(
     val id: Int,

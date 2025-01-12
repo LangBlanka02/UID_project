@@ -12,12 +12,24 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.gamificationapp.models.FlashQuizQuestion
 import com.example.gamificationapp.viewModel.FlashQuizViewModel
+import com.example.gamificationapp.models.RewardViewModel
 
 @Composable
-fun FlashQuizScreen(viewModel: FlashQuizViewModel = viewModel()) {
-    val remainingTime by remember { derivedStateOf { viewModel.remainingTime } }
-    val currentQuestion by remember { derivedStateOf { viewModel.currentQuestion } }
-    val isQuizComplete by remember { derivedStateOf { viewModel.isQuizComplete } }
+fun FlashQuizScreen(
+    flashQuizViewModel: FlashQuizViewModel = viewModel(),
+    rewardViewModel: RewardViewModel = viewModel()
+) {
+    val remainingTime by remember { derivedStateOf { flashQuizViewModel.remainingTime } }
+    val currentQuestion by remember { derivedStateOf { flashQuizViewModel.currentQuestion } }
+    val isQuizComplete by remember { derivedStateOf { flashQuizViewModel.isQuizComplete } }
+    val score by remember { derivedStateOf { flashQuizViewModel.score } }
+
+    // Add points to the total when the quiz is complete
+    LaunchedEffect(isQuizComplete) {
+        if (isQuizComplete) {
+            rewardViewModel.addActivityPoints("Flash Quiz Completed", score)
+        }
+    }
 
     Scaffold { innerPadding ->
         Column(
@@ -29,12 +41,12 @@ fun FlashQuizScreen(viewModel: FlashQuizViewModel = viewModel()) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             if (isQuizComplete) {
-                QuizCompleteScreen(score = viewModel.score)
+                QuizCompleteScreen(score = score)
             } else {
                 FlashQuizContent(
                     question = currentQuestion,
                     remainingTime = remainingTime,
-                    onAnswerSelected = { viewModel.submitAnswer(it) }
+                    onAnswerSelected = { flashQuizViewModel.submitAnswer(it) }
                 )
             }
         }

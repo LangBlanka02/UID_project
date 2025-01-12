@@ -11,9 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.gamificationapp.model.Reward
-import com.example.gamificationapp.model.RewardViewModel
-import com.example.gamificationapp.model.RewardItem
+import com.example.gamificationapp.models.Reward
+import com.example.gamificationapp.models.RewardViewModel
+import com.example.gamificationapp.models.RewardItem
 
 @Composable
 fun RewardCatalogScreen(viewModel: RewardViewModel) {

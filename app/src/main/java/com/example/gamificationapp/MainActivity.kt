@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.gamificationapp.model.RewardViewModel
 import com.example.gamificationapp.screens.student.AssignmentScreen
 import com.example.gamificationapp.screens.student.CourseLeaderboardScreen
 import com.example.gamificationapp.screens.student.EarnedBadgesScreen
@@ -49,6 +50,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GamificationApp() {
     val navController = rememberNavController()
+    val rewardViewModel: RewardViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         // Apply the padding parameter to the NavHost
         NavHost(
@@ -68,8 +71,8 @@ fun GamificationApp() {
             // Expanded Options for Student Dashboard
             composable("course_leaderboard") { CourseLeaderboardScreen() }
             composable("task_overview") { TaskOverviewScreen(navController) }
-            composable("earned_badges") { EarnedBadgesScreen() }
-            composable("reward_catalog") { RewardCatalogScreen() }
+            composable("earned_badges") { EarnedBadgesScreen(viewModel = rewardViewModel) }
+            composable("reward_catalog") { RewardCatalogScreen(viewModel = rewardViewModel) }
             composable("milestones") { MilestonesScreen() }
             composable("team_challenges") { TeamChallengesScreen() }
             composable("past_activity") { PastActivityScreen(navController) }

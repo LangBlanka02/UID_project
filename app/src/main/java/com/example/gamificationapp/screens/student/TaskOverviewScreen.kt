@@ -30,10 +30,10 @@ fun TaskOverviewScreen(navController: NavHostController) {
             // Example tasks
             Text("Pending Quizzes:")
             Button(
-                onClick = { navController.navigate("quiz_page") },
+                onClick = { navController.navigate("flash_quiz_page") },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Start Quiz 1")
+                Text("Start flash Quiz")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -43,7 +43,7 @@ fun TaskOverviewScreen(navController: NavHostController) {
                 onClick = { navController.navigate("assignment_page") },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Upload Assignment 1")
+                Text("Upload Assignment ")
             }
         }
     }

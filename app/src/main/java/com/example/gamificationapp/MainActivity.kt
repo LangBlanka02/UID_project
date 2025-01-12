@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.gamificationapp.screens.student.AssignmentScreen
 import com.example.gamificationapp.screens.student.CourseLeaderboardScreen
 import com.example.gamificationapp.screens.student.EarnedBadgesScreen
@@ -33,6 +35,7 @@ import com.example.gamificationapp.screens.professor.LowEngagementNotificationsS
 import com.example.gamificationapp.screens.professor.MilestoneConfigurationScreen
 import com.example.gamificationapp.screens.professor.TaskManagementScreen
 import com.example.gamificationapp.screens.professor.TeamChallengeManagementScreen
+import com.example.gamificationapp.screens.student.ChallengeDetailScreen
 import com.example.gamificationapp.ui.theme.GamificationAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -71,7 +74,18 @@ fun GamificationApp() {
             composable("earned_badges") { EarnedBadgesScreen() }
             composable("reward_catalog") { RewardCatalogScreen() }
             composable("milestones") { MilestonesScreen() }
-            composable("team_challenges") { TeamChallengesScreen() }
+            composable("team_challenges") { TeamChallengesScreen(navController) }
+            composable(
+                "challenge_detail/{challengeName}/{challengeDescription}",
+                arguments = listOf(
+                    navArgument("challengeName") { type = NavType.StringType },
+                    navArgument("challengeDescription") { type = NavType.StringType }
+                )
+            ) { backStackEntry ->
+                val challengeName = backStackEntry.arguments?.getString("challengeName") ?: ""
+                val challengeDescription = backStackEntry.arguments?.getString("challengeDescription") ?: ""
+                ChallengeDetailScreen(challengeName, challengeDescription, navController)
+            }
             composable("past_activity") { PastActivityScreen(navController) }
 
             // Additional sub-navigation for tasks and past activities

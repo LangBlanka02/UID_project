@@ -1,4 +1,4 @@
-package com.example.gamificationapp.screens
+package com.example.gamificationapp.screens.student
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button

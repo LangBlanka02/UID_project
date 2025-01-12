@@ -1,4 +1,4 @@
-package com.example.gamificationapp.screens
+package com.example.gamificationapp.screens.student
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AssignmentScreen() {
+fun PastAssignmentScreen() {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -21,24 +21,21 @@ fun AssignmentScreen() {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
-            Text("Assignment Page", style = MaterialTheme.typography.headlineMedium)
+            Text("Past Assignment Page", style = MaterialTheme.typography.headlineMedium)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Assignment Details
-            Text("Assignment: Write an essay about climate change.", style = MaterialTheme.typography.bodyLarge)
+            // Example Past Assignment
+            Text("Assignment 1: Essay on Climate Change", style = MaterialTheme.typography.bodyLarge)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text("Grade: A", style = MaterialTheme.typography.bodyLarge)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Upload Button
-            Button(onClick = { /* Handle File Upload */ }, modifier = Modifier.fillMaxWidth()) {
-                Text("Upload Assignment")
+            // View Assignment
+            Button(onClick = { /* Navigate to Assignment Details */ }, modifier = Modifier.fillMaxWidth()) {
+                Text("View Submitted Assignment")
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Submission Status
-            Text("Submission Status: Pending", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
         }
     }
 }

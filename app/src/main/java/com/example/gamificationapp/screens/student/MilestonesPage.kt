@@ -1,4 +1,4 @@
-package com.example.gamificationapp.screens
+package com.example.gamificationapp.screens.student
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun RewardCatalogScreen() {
+fun MilestonesScreen() {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -20,13 +20,13 @@ fun RewardCatalogScreen() {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Reward Catalog", style = MaterialTheme.typography.headlineMedium)
+            Text("Milestones", style = MaterialTheme.typography.headlineMedium)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example rewards
-            Text("- Certificate of Excellence: 1000 points")
-            Text("- Virtual Badge: 500 points")
+            // Example milestones
+            Text("- Completed Module 1")
+            Text("- Scored above 90% in 3 quizzes")
         }
     }
 }

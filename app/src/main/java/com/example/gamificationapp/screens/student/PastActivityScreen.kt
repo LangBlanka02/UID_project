@@ -1,4 +1,4 @@
-package com.example.gamificationapp.screens
+package com.example.gamificationapp.screens.student
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
@@ -11,9 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
-
 @Composable
-fun TaskOverviewScreen(navController: NavHostController) {
+fun PastActivityScreen(navController: NavHostController) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -23,27 +22,27 @@ fun TaskOverviewScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Task Overview", style = MaterialTheme.typography.headlineMedium)
+            Text("Review Past Activity", style = MaterialTheme.typography.headlineMedium)
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example tasks
-            Text("Pending Quizzes:")
+            // Example past activities
+            Text("Past Quizzes:")
             Button(
-                onClick = { navController.navigate("quiz_page") },
+                onClick = { navController.navigate("past_quiz_page") },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Start Quiz 1")
+                Text("View Quiz 1")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text("Pending Assignments:")
+            Text("Past Assignments:")
             Button(
-                onClick = { navController.navigate("assignment_page") },
+                onClick = { navController.navigate("past_assignment_page") },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Upload Assignment 1")
+                Text("View Assignment 1")
             }
         }
     }

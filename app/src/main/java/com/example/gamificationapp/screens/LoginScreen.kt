@@ -80,7 +80,7 @@ fun LoginScreen(navController: NavHostController) {
                         validCredentials[enteredUsername] == enteredPassword -> {
                             // Navigate to the respective dashboard
                             if (enteredUsername == "student") {
-                                navController.navigate("student_dashboard")
+                                navController.navigate("student_dashboard/$enteredUsername")
                             } else if (enteredUsername == "professor") {
                                 navController.navigate("professor_dashboard")
                             }

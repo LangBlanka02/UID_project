@@ -29,6 +29,7 @@ import com.example.gamificationapp.screens.student.StudentDashboardScreen
 import com.example.gamificationapp.screens.student.TaskOverviewScreen
 import com.example.gamificationapp.screens.student.TeamChallengesScreen
 import com.example.gamificationapp.screens.professor.AnalyticsDashboardScreen
+import com.example.gamificationapp.screens.professor.CourseLeaderboardScreenProfessor
 import com.example.gamificationapp.screens.professor.EngagementReportsScreen
 import com.example.gamificationapp.screens.professor.FeedbackMessagingScreen
 import com.example.gamificationapp.screens.professor.GamificationSettingsScreen
@@ -37,6 +38,7 @@ import com.example.gamificationapp.screens.professor.MilestoneConfigurationScree
 import com.example.gamificationapp.screens.professor.TaskManagementScreen
 import com.example.gamificationapp.screens.professor.TeamChallengeManagementScreen
 import com.example.gamificationapp.screens.student.ChallengeDetailScreen
+import com.example.gamificationapp.screens.student.TimedQuizScreen
 import com.example.gamificationapp.ui.theme.GamificationAppTheme
 import com.example.gamificationapp.viewModel.FlashQuizViewModel
 
@@ -67,13 +69,26 @@ fun GamificationApp() {
             composable("login") { LoginScreen(navController) }
 
             // Student Dashboard
-            composable("student_dashboard") { StudentDashboardScreen(navController) }
+            composable(
+                "student_dashboard/{userName}",
+                arguments = listOf(navArgument("userName") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val userName = backStackEntry.arguments?.getString("userName") ?: ""
+                StudentDashboardScreen(navController, userName)
+            }
 
             // Professor Dashboard
             composable("professor_dashboard") { ProfessorDashboardScreen(navController) }
 
             // Expanded Options for Student Dashboard
-            composable("course_leaderboard") { CourseLeaderboardScreen() }
+            composable(
+                "course_leaderboard/{userName}",
+                arguments = listOf(navArgument("userName") { type = NavType.StringType })
+            ) { backStackEntry ->
+                val userName = backStackEntry.arguments?.getString("userName") ?: ""
+                CourseLeaderboardScreen(navController, userName)
+            }
+            composable("timed_quiz") {TimedQuizScreen(navController)}
             composable("task_overview") { TaskOverviewScreen(navController) }
             composable("earned_badges") { EarnedBadgesScreen(viewModel = rewardViewModel) }
             composable("reward_catalog") { RewardCatalogScreen(viewModel = rewardViewModel) }
@@ -101,6 +116,7 @@ fun GamificationApp() {
             // Expanded Options for Professor Dashboard
             composable("engagement_reports") { EngagementReportsScreen() }
             composable("task_management") { TaskManagementScreen() }
+            composable("course_leaderboard_professor") { CourseLeaderboardScreenProfessor(navController) }
             composable("low_engagement_notifications") { LowEngagementNotificationsScreen() }
             composable("gamification_settings") { GamificationSettingsScreen() }
             composable("team_challenge_management") { TeamChallengeManagementScreen() }

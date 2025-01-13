@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun StudentDashboardScreen(navController: NavHostController) {
+fun StudentDashboardScreen(navController: NavHostController, userName: String) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -29,10 +29,19 @@ fun StudentDashboardScreen(navController: NavHostController) {
 
             // Buttons
             Button(
-                onClick = { navController.navigate("course_leaderboard") },
+                onClick = { navController.navigate("course_leaderboard/$userName") },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("View Course Leaderboard")
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Button(
+                onClick = { navController.navigate("timed_quiz") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Timed Quiz")
             }
 
             Spacer(modifier = Modifier.height(8.dp))

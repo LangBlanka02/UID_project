@@ -44,7 +44,7 @@ fun ProfessorDashboardScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(8.dp))
 
             Button(
-                onClick = { navController.navigate("course_leaderboard") },
+                onClick = { navController.navigate("course_leaderboard_professor") },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Course Leaderboard Insights")

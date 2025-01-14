@@ -13,6 +13,8 @@ import kotlin.time.Duration.Companion.seconds
 import kotlin.time.Duration.Companion.minutes
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.gamificationapp.models.RewardViewModel
 
 // Data Structures
 data class QuizQuestion(
@@ -29,7 +31,9 @@ enum class QuestionType {
 }
 
 @Composable
-fun TimedQuizScreen(navController: NavHostController) {
+fun TimedQuizScreen(navController: NavHostController,
+                    rewardViewModel: RewardViewModel = viewModel()
+) {
     val quizQuestions = remember { getHardcodedQuizData().shuffled() } // Shuffle questions
     var currentQuestionIndex by remember { mutableStateOf(0) }
     var selectedAnswerIndex by remember { mutableStateOf<Int?>(null) }
@@ -44,6 +48,12 @@ fun TimedQuizScreen(navController: NavHostController) {
             timeLeft = timeLeft - 1.seconds
         } else {
             isQuizOver = true
+        }
+    }
+
+    LaunchedEffect(isQuizOver) {
+        if (isQuizOver) {
+            rewardViewModel.addActivityPoints("Timed Quiz Completed", score)
         }
     }
 

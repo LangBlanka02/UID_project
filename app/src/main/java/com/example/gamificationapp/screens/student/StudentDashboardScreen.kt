@@ -97,6 +97,13 @@ fun StudentDashboardScreen(navController: NavHostController, userName: String) {
             ) {
                 Text("Review Past Activity")
             }
+
+            Button(
+                onClick = { navController.navigate("feedback_messaging") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Feedback Screen")
+            }
         }
     }
 }

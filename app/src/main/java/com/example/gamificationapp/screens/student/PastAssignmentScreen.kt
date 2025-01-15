@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.gamificationapp.screens.professor.EngagementCard
 
 @Composable
 fun PastAssignmentScreen() {
@@ -25,16 +26,22 @@ fun PastAssignmentScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example Past Assignment
-            Text("Assignment 1: Essay on Climate Change", style = MaterialTheme.typography.bodyLarge)
-            Spacer(modifier = Modifier.height(8.dp))
-            Text("Grade: A", style = MaterialTheme.typography.bodyLarge)
+            // Example Past Assignment in EngagementCard
+            EngagementCard(
+                title = "Assignment 1: Essay on Climate Change",
+                details = listOf(
+                    "Grade: A"
+                )
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // View Assignment
-            Button(onClick = { /* Navigate to Assignment Details */ }, modifier = Modifier.fillMaxWidth()) {
-                Text("View Submitted Assignment")
+            // View Assignment Button
+            Button(
+                onClick = { /* Navigate to Assignment Details */ },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Download Submitted Assignment")
             }
         }
     }

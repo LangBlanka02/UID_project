@@ -16,13 +16,13 @@ class PastQuizViewModel : ViewModel() {
                     question = "What is the capital of France?",
                     options = listOf("Paris", "London", "Berlin", "Madrid"),
                     correctAnswer = "Paris",
-                    explanation = "Paris is the capital and most populous city of France."
+                    //explanation = "Paris is the capital and most populous city of France."
                 ),
                 FlashQuizQuestion(
                     question = "What is 5 + 7?",
                     options = listOf("10", "11", "12", "13"),
                     correctAnswer = "12",
-                    explanation = "The sum of 5 and 7 is 12."
+                    //explanation = "The sum of 5 and 7 is 12."
                 )
             ),
             userAnswers = mapOf(0 to "London", 1 to "12") // First answer is incorrect

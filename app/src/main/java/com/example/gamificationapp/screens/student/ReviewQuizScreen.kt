@@ -75,10 +75,10 @@ fun ReviewQuizScreen(viewModel: PastQuizViewModel) {
                                 color = MaterialTheme.colorScheme.primary
                             )
                         )
-                        Text(
-                            text = "Explanation: ${question.explanation}",
-                            style = MaterialTheme.typography.bodySmall
-                        )
+//                        Text(
+//                            text = "Explanation: ${question.explanation}",
+//                            style = MaterialTheme.typography.bodySmall
+//                        )
                     }
                 }
             }

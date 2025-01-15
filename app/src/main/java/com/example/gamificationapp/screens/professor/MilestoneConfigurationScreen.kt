@@ -26,8 +26,10 @@ fun MilestoneConfigurationScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example Milestone
-            Text("Milestone: Complete Module 1 | Reward: Badge")
+            EngagementCard(
+                title = "Milestone",
+                details = listOf("Complete Module 1 | Reward: Badge")
+            )
         }
     }
 }

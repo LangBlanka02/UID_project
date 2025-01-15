@@ -18,8 +18,8 @@ fun LoginScreen(navController: NavHostController) {
 
     // Predefined credentials
     val validCredentials = mapOf(
-        "student" to "student123",
-        "professor" to "professor123"
+        "student" to "Student123",
+        "professor" to "Professor123"
     )
 
     Scaffold { innerPadding ->
@@ -73,15 +73,25 @@ fun LoginScreen(navController: NavHostController) {
             // Login Button
             Button(
                 onClick = {
-                    val enteredUsername = username.value.lowercase()
+                    val enteredUsername = username.value.trim()
                     val enteredPassword = password.value
 
                     when {
-                        validCredentials[enteredUsername] == enteredPassword -> {
+                        enteredUsername.isEmpty() -> {
+                            errorMessage = "Username cannot be empty."
+                        }
+                        enteredPassword.isEmpty() -> {
+                            errorMessage = "Password cannot be empty."
+                        }
+                        !isValidPassword(enteredPassword) -> {
+                            errorMessage = "Password must contain at least 8 characters, " +
+                                    "one uppercase letter, and one number."
+                        }
+                        validCredentials[enteredUsername.lowercase()] == enteredPassword -> {
                             // Navigate to the respective dashboard
-                            if (enteredUsername == "student") {
+                            if (enteredUsername.lowercase() == "student") {
                                 navController.navigate("student_dashboard/$enteredUsername")
-                            } else if (enteredUsername == "professor") {
+                            } else if (enteredUsername.lowercase() == "professor") {
                                 navController.navigate("professor_dashboard")
                             }
                         }
@@ -96,4 +106,12 @@ fun LoginScreen(navController: NavHostController) {
             }
         }
     }
+}
+
+// Helper function to validate password
+fun isValidPassword(password: String): Boolean {
+    val hasUpperCase = password.any { it.isUpperCase() }
+    val hasNumber = password.any { it.isDigit() }
+    val hasMinimumLength = password.length >= 8
+    return hasUpperCase && hasNumber && hasMinimumLength
 }

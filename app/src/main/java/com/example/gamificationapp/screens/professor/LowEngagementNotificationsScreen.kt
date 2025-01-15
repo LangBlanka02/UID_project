@@ -26,9 +26,10 @@ fun LowEngagementNotificationsScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example Notifications
-            Text("John Doe: No login for 7 days")
-            Text("Jane Smith: Low quiz participation")
+            EngagementCard(
+                title = "Low Engagement Notifications",
+                details = listOf("John Doe: No login for 7 days", "Jane Smith: Low quiz participation")
+            )
         }
     }
 }

@@ -11,7 +11,7 @@ import com.example.gamificationapp.screens.professor.EngagementCard
 import com.example.gamificationapp.screens.student.dto.Feedback
 
 @Composable
-fun FeedbackMessagingScreen() {
+fun FeedbackMessagingStudent() {
     val feedbackList = listOf(
         Feedback("Alice", "Great job on Module 1! Your understanding of the basics is commendable."),
         //Feedback("Bob", "Excellent performance on the quiz! Consider improving time management."),
@@ -28,15 +28,20 @@ fun FeedbackMessagingScreen() {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.Start
         ) {
+            // Screen Title
             Text("Feedback and Messaging", style = MaterialTheme.typography.headlineMedium)
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // Feedback displayed in EngagementCard
             feedbackList.forEach { feedback ->
                 EngagementCard(
                     title = "Student: ${feedback.studentName}",
-                    details = listOf("Feedback: ${feedback.feedback}")
+                    details = listOf(
+                        "Feedback: ${feedback.feedback}"
+                    )
                 )
+                Spacer(modifier = Modifier.height(8.dp)) // Space between cards
             }
         }
     }

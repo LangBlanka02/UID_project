@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.gamificationapp.screens.professor.EngagementCard
 
 @Composable
 fun AssignmentScreen() {
@@ -25,20 +26,24 @@ fun AssignmentScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Assignment Details
-            Text("Assignment: Write an essay about climate change.", style = MaterialTheme.typography.bodyLarge)
+            // Assignment Details in EngagementCard
+            EngagementCard(
+                title = "Assignment Details",
+                details = listOf(
+                    "Write an essay about climate change.",
+                    "Submission Status: Pending"
+                )
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Upload Button
-            Button(onClick = { /* Handle File Upload */ }, modifier = Modifier.fillMaxWidth()) {
+            Button(
+                onClick = { /* Handle File Upload */ },
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 Text("Upload Assignment")
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Submission Status
-            Text("Submission Status: Pending", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.error)
         }
     }
 }

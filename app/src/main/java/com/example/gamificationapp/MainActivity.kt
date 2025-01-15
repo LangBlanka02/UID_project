@@ -88,6 +88,7 @@ fun GamificationApp() {
                 val userName = backStackEntry.arguments?.getString("userName") ?: ""
                 CourseLeaderboardScreen(navController, userName)
             }
+            composable("feedback_student") { com.example.gamificationapp.screens.student.FeedbackMessagingScreen()}
             composable("timed_quiz") {TimedQuizScreen(navController,rewardViewModel = rewardViewModel)}
             composable("task_overview") { TaskOverviewScreen(navController) }
             composable("earned_badges") { EarnedBadgesScreen(viewModel = rewardViewModel) }

@@ -26,8 +26,10 @@ fun TeamChallengeManagementScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example Challenge
-            Text("Challenge: Module 1 Group Project | Deadline: Next Week")
+            EngagementCard(
+                title = "Challenge",
+                details = listOf("Module 1 Group Project | Deadline: Next Week")
+            )
         }
     }
 }

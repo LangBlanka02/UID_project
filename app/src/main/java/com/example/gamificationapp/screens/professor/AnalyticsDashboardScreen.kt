@@ -26,9 +26,10 @@ fun AnalyticsDashboardScreen() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Example Analytics
-            Text("Total Students: 50")
-            Text("Average Participation Rate: 80%")
+            EngagementCard(
+                title = "Total Students: 50",
+                details = listOf("Average Participation Rate: 80%")
+            )
         }
     }
 }
